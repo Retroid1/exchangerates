@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ExchangeRates
+    username: postgres
+    password: 1111
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+  flyway:
+    enabled: True
+    locations: classpath:db/migration
