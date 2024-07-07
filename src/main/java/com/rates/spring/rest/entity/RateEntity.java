@@ -23,7 +23,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @Table(name = "rates")
-public class RatesEntity {
+public class RateEntity {
     @Id
     @GeneratedValue
     private UUID id;
