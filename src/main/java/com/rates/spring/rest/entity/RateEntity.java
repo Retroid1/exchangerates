@@ -1,21 +1,18 @@
 package com.rates.spring.rest.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
+import com.rates.spring.rest.entity.base.ABaseEntity;
+import com.rates.spring.rest.entity.base.AFixationBaseEntity;
 import jakarta.persistence.Column;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.AllArgsConstructor;
-import java.util.UUID;
+import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import lombok.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-
+/** Класс сущности: курс валюты */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -23,32 +20,31 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @Table(name = "rates")
-public class RateEntity {
-    @Id
-    @GeneratedValue
-    private UUID id;
+public class RateEntity extends AFixationBaseEntity {
 
-    @Column(name = "currency_id", nullable = false)
+    /** Идентификатор курса валюты */
+    @Column(name = "currency_id")
     private String currencyId;
 
-    @Column(name = "country_id", nullable = false)
-    private Long countryId;
+    /** Страна */
+    @ManyToOne
+    @JoinColumn(name = "country_id")
+    private CountryEntity countryId;
 
-    @Column(name = "rate_dict_id", nullable = false)
-    private Long rateDictId;
+    /** Курс валюты по словарю */
+    @ManyToOne
+    @JoinColumn(name = "rate_dict_id")
+    private RateDictEntity rateDictId;
 
-    @Column(name = "rate_date", nullable = false)
+    /** Дата курса */
+    @Column(name = "rate_date")
     private LocalDateTime rateDate;
 
-    @Column(name = "nominal", nullable = false)
-    private Long nominal;
+    /** Номинал валюты */
+    @Column(name = "nominal")
+    private Integer nominal;
 
-    @Column(name = "value", nullable = false)
+    /** Значение */
+    @Column(name = "value")
     private BigDecimal value;
-
-    @Column(name = "created", nullable = false)
-    private LocalDateTime created;
-
-    @Column(name = "updated", nullable = false)
-    private LocalDateTime updated;
 }
