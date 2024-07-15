@@ -28,7 +28,6 @@ public class ExceptionControllerAdvice {
             ConverterService<ServiceException, ErrorResponse> exceptionToResponseConverterService) {
         this.exceptionToResponseConverterService = exceptionToResponseConverterService;
     }
-
     @ExceptionHandler(BindException.class)
     public ResponseEntity<ErrorResponse> handleBindingException(BindException e) {
         BindingResult bindingResult = e.getBindingResult();

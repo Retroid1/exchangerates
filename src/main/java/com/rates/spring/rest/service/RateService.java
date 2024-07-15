@@ -5,7 +5,7 @@ import com.rates.spring.rest.entity.RateEntity;
 import java.util.UUID;
 
 /**
- * @author Ilya Konshin
+ * @author Danil Golubenkov
  */
 public interface RateService {
     /**

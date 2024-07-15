@@ -15,10 +15,10 @@ public interface BaseRepository<T, ID> extends Repository<T, ID>, JpaSpecificati
     static <T> Specification<T> whereAttributeLike(String attribute, String text) {
         return (root, query, cb) -> {
             String pattern = text.toLowerCase();
-            if (pattern.startsWith("")) {
+            if (pattern.startsWith("*")) {
                 pattern = "%" + pattern.substring(1);
             }
-            if (pattern.endsWith("")) {
+            if (pattern.endsWith("*")) {
                 pattern = pattern.substring(0, pattern.length() - 1) + "%";
             }
 
